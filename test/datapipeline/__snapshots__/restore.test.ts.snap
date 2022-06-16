@@ -10,17 +10,144 @@ Object {
     },
   },
   "Resources": Object {
-    "AccountInstanceProfileF75EEE70": Object {
+    "Bucket83908E77": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "BucketEncryption": Object {
+          "ServerSideEncryptionConfiguration": Array [
+            Object {
+              "ServerSideEncryptionByDefault": Object {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": Object {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "BucketPolicyE9A3008A": Object {
+      "Properties": Object {
+        "Bucket": Object {
+          "Ref": "Bucket83908E77",
+        },
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "s3:*",
+              "Condition": Object {
+                "Bool": Object {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": Object {
+                "AWS": "*",
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "Bucket83908E77",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "Bucket83908E77",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
+      "DependsOn": Array [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
+          },
+          "S3Key": "bdb08b9984816ecf43301a0c6d8913e270ee2448940b6b95e430dd222a4d90be.zip",
+        },
+        "Description": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "Lambda function for auto-deleting objects in ",
+              Object {
+                "Ref": "RestoreLogBucket92CE6D0A",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "__entrypoint__.handler",
+        "MemorySize": 128,
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "RestoreInstanceProfileC664AC77": Object {
       "Properties": Object {
         "Roles": Array [
           Object {
-            "Ref": "AccountResourceRole841E53A8",
+            "Ref": "RestoreResourceRole47C46902",
           },
         ],
       },
       "Type": "AWS::IAM::InstanceProfile",
     },
-    "AccountLogBucket56CED15A": Object {
+    "RestoreLogBucket92CE6D0A": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
         "BucketEncryption": Object {
@@ -56,14 +183,14 @@ Object {
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Delete",
     },
-    "AccountLogBucketAutoDeleteObjectsCustomResourceA0D495C6": Object {
+    "RestoreLogBucketAutoDeleteObjectsCustomResource5F907F9F": Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
-        "AccountLogBucketPolicy5D6625A5",
+        "RestoreLogBucketPolicyBEE68A85",
       ],
       "Properties": Object {
         "BucketName": Object {
-          "Ref": "AccountLogBucket56CED15A",
+          "Ref": "RestoreLogBucket92CE6D0A",
         },
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -75,10 +202,10 @@ Object {
       "Type": "Custom::S3AutoDeleteObjects",
       "UpdateReplacePolicy": "Delete",
     },
-    "AccountLogBucketPolicy5D6625A5": Object {
+    "RestoreLogBucketPolicyBEE68A85": Object {
       "Properties": Object {
         "Bucket": Object {
-          "Ref": "AccountLogBucket56CED15A",
+          "Ref": "RestoreLogBucket92CE6D0A",
         },
         "PolicyDocument": Object {
           "Statement": Array [
@@ -96,7 +223,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
@@ -106,7 +233,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
                       },
@@ -134,7 +261,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
@@ -144,7 +271,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
                       },
@@ -160,7 +287,7 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "AccountPipelineCAB96951": Object {
+    "RestorePipelineF29E167F": Object {
       "Properties": Object {
         "Activate": true,
         "Description": Object {
@@ -337,7 +464,7 @@ Object {
               Object {
                 "Key": "role",
                 "StringValue": Object {
-                  "Ref": "AccountRole21AF4D4D",
+                  "Ref": "RestoreRole434BA328",
                 },
               },
               Object {
@@ -348,7 +475,7 @@ Object {
                     Array [
                       "s3://",
                       Object {
-                        "Ref": "AccountLogBucket56CED15A",
+                        "Ref": "RestoreLogBucket92CE6D0A",
                       },
                       "/dynamodb/restore",
                     ],
@@ -478,7 +605,7 @@ Object {
       },
       "Type": "AWS::DataPipeline::Pipeline",
     },
-    "AccountResourceRole841E53A8": Object {
+    "RestoreResourceRole47C46902": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -519,7 +646,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "AccountResourceRoleDefaultPolicy23ED78E2": Object {
+    "RestoreResourceRoleDefaultPolicy33CDDB9A": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -583,7 +710,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
@@ -593,7 +720,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
                       },
@@ -606,16 +733,16 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "AccountResourceRoleDefaultPolicy23ED78E2",
+        "PolicyName": "RestoreResourceRoleDefaultPolicy33CDDB9A",
         "Roles": Array [
           Object {
-            "Ref": "AccountResourceRole841E53A8",
+            "Ref": "RestoreResourceRole47C46902",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "AccountRole21AF4D4D": Object {
+    "RestoreRole434BA328": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -648,133 +775,6 @@ Object {
                 ":iam::aws:policy/AWSDataPipelineRole",
               ],
             ],
-          },
-        ],
-      },
-      "Type": "AWS::IAM::Role",
-    },
-    "Bucket83908E77": Object {
-      "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "BucketEncryption": Object {
-          "ServerSideEncryptionConfiguration": Array [
-            Object {
-              "ServerSideEncryptionByDefault": Object {
-                "SSEAlgorithm": "AES256",
-              },
-            },
-          ],
-        },
-        "PublicAccessBlockConfiguration": Object {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true,
-        },
-      },
-      "Type": "AWS::S3::Bucket",
-      "UpdateReplacePolicy": "Retain",
-    },
-    "BucketPolicyE9A3008A": Object {
-      "Properties": Object {
-        "Bucket": Object {
-          "Ref": "Bucket83908E77",
-        },
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "s3:*",
-              "Condition": Object {
-                "Bool": Object {
-                  "aws:SecureTransport": "false",
-                },
-              },
-              "Effect": "Deny",
-              "Principal": Object {
-                "AWS": "*",
-              },
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
-                    "Bucket83908E77",
-                    "Arn",
-                  ],
-                },
-                Object {
-                  "Fn::Join": Array [
-                    "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
-                          "Bucket83908E77",
-                          "Arn",
-                        ],
-                      },
-                      "/*",
-                    ],
-                  ],
-                },
-              ],
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-      },
-      "Type": "AWS::S3::BucketPolicy",
-    },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
-      "DependsOn": Array [
-        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-      ],
-      "Properties": Object {
-        "Code": Object {
-          "S3Bucket": Object {
-            "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
-          },
-          "S3Key": "bdb08b9984816ecf43301a0c6d8913e270ee2448940b6b95e430dd222a4d90be.zip",
-        },
-        "Description": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "Lambda function for auto-deleting objects in ",
-              Object {
-                "Ref": "AccountLogBucket56CED15A",
-              },
-              " S3 bucket.",
-            ],
-          ],
-        },
-        "Handler": "__entrypoint__.handler",
-        "MemorySize": 128,
-        "Role": Object {
-          "Fn::GetAtt": Array [
-            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
-            "Arn",
-          ],
-        },
-        "Runtime": "nodejs12.x",
-        "Timeout": 900,
-      },
-      "Type": "AWS::Lambda::Function",
-    },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": "sts:AssumeRole",
-              "Effect": "Allow",
-              "Principal": Object {
-                "Service": "lambda.amazonaws.com",
-              },
-            },
-          ],
-          "Version": "2012-10-17",
-        },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
           },
         ],
       },
