@@ -17,7 +17,7 @@ describe("DataPipelineBackup", () => {
     const bucket = new PrivateBucket(stack, "Bucket", {});
 
     // When
-    new DataPipelineBackup(stack, "Account", {
+    new DataPipelineBackup(stack, "Backup", {
       table: table,
       backupBucket: bucket,
     });
