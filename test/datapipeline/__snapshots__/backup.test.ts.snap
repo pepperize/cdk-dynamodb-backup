@@ -10,17 +10,17 @@ Object {
     },
   },
   "Resources": Object {
-    "AccountInstanceProfileF75EEE70": Object {
+    "BackupInstanceProfileB2043635": Object {
       "Properties": Object {
         "Roles": Array [
           Object {
-            "Ref": "AccountResourceRole841E53A8",
+            "Ref": "BackupResourceRole07B575C9",
           },
         ],
       },
       "Type": "AWS::IAM::InstanceProfile",
     },
-    "AccountLogBucket56CED15A": Object {
+    "BackupLogBucket90794096": Object {
       "DeletionPolicy": "Delete",
       "Properties": Object {
         "BucketEncryption": Object {
@@ -60,14 +60,14 @@ Object {
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Delete",
     },
-    "AccountLogBucketAutoDeleteObjectsCustomResourceA0D495C6": Object {
+    "BackupLogBucketAutoDeleteObjectsCustomResource206703D7": Object {
       "DeletionPolicy": "Delete",
       "DependsOn": Array [
-        "AccountLogBucketPolicy5D6625A5",
+        "BackupLogBucketPolicy6961D95E",
       ],
       "Properties": Object {
         "BucketName": Object {
-          "Ref": "AccountLogBucket56CED15A",
+          "Ref": "BackupLogBucket90794096",
         },
         "ServiceToken": Object {
           "Fn::GetAtt": Array [
@@ -79,10 +79,10 @@ Object {
       "Type": "Custom::S3AutoDeleteObjects",
       "UpdateReplacePolicy": "Delete",
     },
-    "AccountLogBucketPolicy5D6625A5": Object {
+    "BackupLogBucketPolicy6961D95E": Object {
       "Properties": Object {
         "Bucket": Object {
-          "Ref": "AccountLogBucket56CED15A",
+          "Ref": "BackupLogBucket90794096",
         },
         "PolicyDocument": Object {
           "Statement": Array [
@@ -100,7 +100,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "BackupLogBucket90794096",
                     "Arn",
                   ],
                 },
@@ -110,7 +110,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "BackupLogBucket90794096",
                           "Arn",
                         ],
                       },
@@ -138,7 +138,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "BackupLogBucket90794096",
                     "Arn",
                   ],
                 },
@@ -148,7 +148,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "BackupLogBucket90794096",
                           "Arn",
                         ],
                       },
@@ -164,7 +164,7 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "AccountPipelineCAB96951": Object {
+    "BackupPipeline7E0A3FBB": Object {
       "Properties": Object {
         "Activate": true,
         "Description": Object {
@@ -363,7 +363,7 @@ Object {
               Object {
                 "Key": "role",
                 "StringValue": Object {
-                  "Ref": "AccountRole21AF4D4D",
+                  "Ref": "BackupRole4CD139C5",
                 },
               },
               Object {
@@ -374,7 +374,7 @@ Object {
                     Array [
                       "s3://",
                       Object {
-                        "Ref": "AccountLogBucket56CED15A",
+                        "Ref": "BackupLogBucket90794096",
                       },
                       "/dynamodb/backup",
                     ],
@@ -493,7 +493,7 @@ Object {
       },
       "Type": "AWS::DataPipeline::Pipeline",
     },
-    "AccountResourceRole841E53A8": Object {
+    "BackupResourceRole07B575C9": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -540,7 +540,7 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "AccountResourceRoleDefaultPolicy23ED78E2": Object {
+    "BackupResourceRoleDefaultPolicy96D613A3": Object {
       "Properties": Object {
         "PolicyDocument": Object {
           "Statement": Array [
@@ -607,7 +607,7 @@ Object {
               "Resource": Array [
                 Object {
                   "Fn::GetAtt": Array [
-                    "AccountLogBucket56CED15A",
+                    "BackupLogBucket90794096",
                     "Arn",
                   ],
                 },
@@ -617,7 +617,7 @@ Object {
                     Array [
                       Object {
                         "Fn::GetAtt": Array [
-                          "AccountLogBucket56CED15A",
+                          "BackupLogBucket90794096",
                           "Arn",
                         ],
                       },
@@ -630,16 +630,16 @@ Object {
           ],
           "Version": "2012-10-17",
         },
-        "PolicyName": "AccountResourceRoleDefaultPolicy23ED78E2",
+        "PolicyName": "BackupResourceRoleDefaultPolicy96D613A3",
         "Roles": Array [
           Object {
-            "Ref": "AccountResourceRole841E53A8",
+            "Ref": "BackupResourceRole07B575C9",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "AccountRole21AF4D4D": Object {
+    "BackupRole4CD139C5": Object {
       "Properties": Object {
         "AssumeRolePolicyDocument": Object {
           "Statement": Array [
@@ -775,7 +775,7 @@ Object {
             Array [
               "Lambda function for auto-deleting objects in ",
               Object {
-                "Ref": "AccountLogBucket56CED15A",
+                "Ref": "BackupLogBucket90794096",
               },
               " S3 bucket.",
             ],
