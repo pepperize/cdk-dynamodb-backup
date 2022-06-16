@@ -1,5 +1,6 @@
 {
-  "name": "cdk-dynamodb-backup",
+  "name": "@pepperize/cdk-dynamodb-backup",
+  "description": "Backup and restore AWS DynamoDB Table to AWS S3 Bucket with AWS Data Pipeline.",
   "repository": {
     "type": "git",
     "url": "https://github.com/patrick.florek/cdk-dynamodb-backup.git"
@@ -16,7 +17,10 @@
     "format": "npx projen format",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
+    "package:dotnet": "npx projen package:dotnet",
+    "package:java": "npx projen package:java",
     "package:js": "npx projen package:js",
+    "package:python": "npx projen package:python",
     "post-compile": "npx projen post-compile",
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
@@ -40,7 +44,7 @@
     "@types/node": "^12",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk-lib": "2.1.0",
+    "aws-cdk-lib": "2.8.0",
     "constructs": "10.0.5",
     "eslint": "^8",
     "eslint-config-prettier": "^8.5.0",
@@ -56,20 +60,36 @@
     "json-schema": "^0.4.0",
     "npm-check-updates": "^12",
     "prettier": "^2.6.2",
-    "projen": "^0.56.5",
+    "projen": "^0.58.15",
     "standard-version": "^9",
     "ts-jest": "^28.0.2",
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.1.0",
+    "@pepperize/cdk-private-bucket": "^0.0.141",
+    "aws-cdk-lib": "^2.8.0",
     "constructs": "^10.0.5"
   },
+  "dependencies": {
+    "@pepperize/cdk-private-bucket": "^0.0.141"
+  },
   "keywords": [
-    "cdk"
+    "aws",
+    "backup",
+    "bucket",
+    "cdk",
+    "data pipeline",
+    "dynamodb",
+    "emr",
+    "restore",
+    "s3",
+    "table"
   ],
   "main": "lib/index.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.0",
   "jest": {
     "testMatch": [
@@ -116,7 +136,23 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "java": {
+        "package": "com.pepperize.cdk.dynamodb_backup",
+        "maven": {
+          "groupId": "com.pepperize",
+          "artifactId": "cdk-dynamodb-backup"
+        }
+      },
+      "python": {
+        "distName": "pepperize.cdk-dynamodb-backup",
+        "module": "pepperize_cdk_dynamodb_backup"
+      },
+      "dotnet": {
+        "namespace": "Pepperize.CDK",
+        "packageId": "Pepperize.CDK.DynamodbBackup"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"
