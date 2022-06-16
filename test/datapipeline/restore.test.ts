@@ -16,7 +16,7 @@ describe("DataPipelineRestore", () => {
     const bucket = new PrivateBucket(stack, "Bucket", {});
 
     // When
-    new DataPipelineRestore(stack, "Account", {
+    new DataPipelineRestore(stack, "Restore", {
       table: table,
       restoreBucket: bucket,
       restoreFolder: "/my-ddb-backup",

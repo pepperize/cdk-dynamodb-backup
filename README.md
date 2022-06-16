@@ -81,7 +81,7 @@ const table = new aws_dynamodb.Table(stack, "Table", {
 const bucket = new aws_s3.Bucket(stack, "Bucket", {});
 
 // When
-new DataPipelineRestore(stack, "Account", {
+new DataPipelineRestore(stack, "Restore", {
   table: table,
   restoreBucket: bucket,
   restoreFolder: "/prefix/to/folder/with/manifest",
