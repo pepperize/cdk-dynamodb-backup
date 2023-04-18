@@ -324,10 +324,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@8.37.0":
-  version "8.37.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.37.0.tgz#cf1b5fa24217fe007f6487a26d765274925efa7d"
-  integrity sha512-x5vzdtOOGgFVDCUs81QRB2+liax8rFg3+7hqM+QhBG0/G3F1ZsoYl97UrqgHgQ9KKT7G6c4V+aTUCgu/n22v1A==
+"@eslint/js@8.38.0":
+  version "8.38.0"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.38.0.tgz#73a8a0d8aa8a8e6fe270431c5e72ae91b5337892"
+  integrity sha512-IoD2MfUnOV58ghIHCiil01PcohxjbYR/qCxsoC+xNgUwh1EY8jOOrYmu3d3a71+tJJ23uscEV4X2HJWMsPJu4g==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -2048,14 +2048,14 @@ eslint-visitor-keys@^3.3.0, eslint-visitor-keys@^3.4.0:
   integrity sha512-HPpKPUBQcAsZOsHAFwTtIKcYlCje62XB7SEAcxjtmW6TD1WVpkS6i6/hOVtTZIl4zGj/mBqpFVGvaDneik+VoQ==
 
 eslint@^8:
-  version "8.37.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.37.0.tgz#1f660ef2ce49a0bfdec0b0d698e0b8b627287412"
-  integrity sha512-NU3Ps9nI05GUoVMxcZx1J8CNR6xOvUT4jAUMH5+z8lpp3aEdPVCImKw6PWG4PY+Vfkpr+jvMpxs/qoE7wq0sPw==
+  version "8.38.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.38.0.tgz#a62c6f36e548a5574dd35728ac3c6209bd1e2f1a"
+  integrity sha512-pIdsD2jwlUGf/U38Jv97t8lq6HpaU/G9NKbYmpWpZGw3LdTNhZLbJePqxOXGB5+JEKfOPU/XLxYxFh03nr1KTg==
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.4.0"
     "@eslint/eslintrc" "^2.0.2"
-    "@eslint/js" "8.37.0"
+    "@eslint/js" "8.38.0"
     "@humanwhocodes/config-array" "^0.11.8"
     "@humanwhocodes/module-importer" "^1.0.1"
     "@nodelib/fs.walk" "^1.2.8"
@@ -3464,21 +3464,21 @@ jsesc@^2.5.1:
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
 jsii-diff@^1.76.0:
-  version "1.79.0"
-  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.79.0.tgz#03fe508eb94531ed5de72b59b16c1cfcf11c393b"
-  integrity sha512-WOd3oWM/W7sQh9s5uf5o56h58y3FHYBFOWROPDKnrlOuZ15HwDlT65kaUKSvOu7nZlQgeUOC+qra0DXClMlEjw==
+  version "1.80.0"
+  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.80.0.tgz#334cd4459369db3c137a8ce93db397b81ddfd1d3"
+  integrity sha512-DUJEmTnp6mhYh6lsOpoGJ5vZFjdWIw9/CM0gO07X1srkzukNiwbMnGP2pAGLPmjEYAJqmAEUOPL7bmLGo2k/dw==
   dependencies:
-    "@jsii/check-node" "1.79.0"
-    "@jsii/spec" "^1.79.0"
+    "@jsii/check-node" "1.80.0"
+    "@jsii/spec" "^1.80.0"
     fs-extra "^10.1.0"
-    jsii-reflect "^1.79.0"
+    jsii-reflect "^1.80.0"
     log4js "^6.9.1"
     yargs "^16.2.0"
 
 jsii-docgen@^7.1.17:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-7.2.0.tgz#d4f02abce89c197d7107caef04eee83db9ac6bea"
-  integrity sha512-vj/cjoXiBpm7hJBsqrxuTlIJADcQV7iOK0U0b041Onn33joyD2vE7a4T9+umbVIeivnJ892o4nghKBHd+LdvPw==
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-7.2.1.tgz#b315a749bb8f918f7c9595df1f0490bdaef00b5f"
+  integrity sha512-xMkiL3Ciy/ZqVOEOIOQat+CFy8OTMXiZJG1LxHiNxtl3n1wNKFJ6MOvtGusVPieah+ctyDgUfTe37w9AeckoQg==
   dependencies:
     "@jsii/spec" "^1.79.0"
     case "^1.6.3"
