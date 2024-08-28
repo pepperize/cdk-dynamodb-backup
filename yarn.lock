@@ -3548,14 +3548,14 @@ jsesc@^2.5.1:
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
 jsii-diff@^1.76.0:
-  version "1.102.0"
-  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.102.0.tgz#4008ea927f4367eecef813189822df6d6f239109"
-  integrity sha512-mFXOk5CDlk7ojkomHh2H6ngcknht1/r5Qmeice+B1xlL/fEmySs+g/ILowDED4Yu4P4491kZzh3EDMAaf34NkQ==
+  version "1.103.0"
+  resolved "https://registry.yarnpkg.com/jsii-diff/-/jsii-diff-1.103.0.tgz#e55ced64d0eec788c7b2a49e356c68148e5ebe41"
+  integrity sha512-a2ZE35jNs7urCd9a90w58e2gpWF73Q3+gOJ/p7m4Ti8OdBEhrS/u7D1sv1DAeCuskIiPs4o8/p/KJfMKqJoXbA==
   dependencies:
-    "@jsii/check-node" "1.102.0"
-    "@jsii/spec" "^1.102.0"
+    "@jsii/check-node" "1.103.0"
+    "@jsii/spec" "^1.103.0"
     fs-extra "^10.1.0"
-    jsii-reflect "^1.102.0"
+    jsii-reflect "^1.103.0"
     log4js "^6.9.1"
     yargs "^16.2.0"
 
@@ -3642,12 +3642,12 @@ jsii@1.97.0:
     yargs "^16.2.0"
 
 jsii@^1.76.0:
-  version "1.102.0"
-  resolved "https://registry.yarnpkg.com/jsii/-/jsii-1.102.0.tgz#7d0f01497c84ffe52be7d4a5a075387a2596cf16"
-  integrity sha512-XwNFkuC1dU6CiA7toiffUPuRj86hThk9T617ZGyKrrdwQ3Q0VbS+nHv4oq1WcmG0O+2EaZMgyfbNTFurHDkquA==
+  version "1.103.0"
+  resolved "https://registry.yarnpkg.com/jsii/-/jsii-1.103.0.tgz#fa1545745fe1bf98ea29c02c560cf3e4df84a0e0"
+  integrity sha512-VOx//ltn+xFEjqLUszj7S4RQ5BpVe6PvneodYxcoHb79Z52kC9IsDx26cEsaizXZcnWtJjIK2XjnT5dPM2TNCw==
   dependencies:
-    "@jsii/check-node" "1.102.0"
-    "@jsii/spec" "^1.102.0"
+    "@jsii/check-node" "1.103.0"
+    "@jsii/spec" "^1.103.0"
     case "^1.6.3"
     chalk "^4"
     fast-deep-equal "^3.1.3"
