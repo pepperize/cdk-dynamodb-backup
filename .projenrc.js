@@ -10,7 +10,7 @@ const project = new AwsCdkConstructLibrary({
   keywords: ["aws", "cdk", "dynamodb", "table", "s3", "bucket", "data pipeline", "emr", "backup", "restore"],
   repositoryUrl: "https://github.com/patrick.florek/cdk-dynamodb-backup.git",
 
-  devDeps: ["@pepperize/projen-awscdk-construct"],
+  devDeps: ["@pepperize/projen-awscdk-construct@~0.0.730"],
   peerDeps: ["@pepperize/cdk-private-bucket"],
   deps: ["@pepperize/cdk-private-bucket"],
 
