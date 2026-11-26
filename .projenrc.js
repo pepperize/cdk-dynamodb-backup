@@ -3,15 +3,23 @@ const { javascript } = require("projen");
 const project = new AwsCdkConstructLibrary({
   author: "Patrick Florek",
   authorAddress: "patrick.florek@gmail.com",
-  cdkVersion: "2.8.0",
+  cdkVersion: "2.278.0",
+  jsiiVersion: "~6.0.0",
   defaultReleaseBranch: "main",
   name: "@pepperize/cdk-dynamodb-backup",
   description: "Backup and restore AWS DynamoDB Table to AWS S3 Bucket with AWS Data Pipeline.",
   keywords: ["aws", "cdk", "dynamodb", "table", "s3", "bucket", "data pipeline", "emr", "backup", "restore"],
   repositoryUrl: "https://github.com/patrick.florek/cdk-dynamodb-backup.git",
 
-  devDeps: ["@pepperize/projen-awscdk-construct@~0.0.730"],
-  peerDeps: ["@pepperize/cdk-private-bucket"],
+  minNodeVersion: "22.13.0",
+  workflowNodeVersion: "24.x",
+  jestOptions: {
+    jestVersion: "^30",
+  },
+  packageManager: javascript.NodePackageManager.YARN_CLASSIC,
+
+  devDeps: ["@pepperize/projen-awscdk-construct@~0.1.1", "@types/node@^22", "typescript@~6.0"],
+  peerDeps: ["@pepperize/cdk-private-bucket@^0.0.599"],
   deps: ["@pepperize/cdk-private-bucket"],
 
   releaseToNpm: true,
@@ -25,7 +33,6 @@ const project = new AwsCdkConstructLibrary({
     module: "pepperize_cdk_dynamodb_backup",
   },
   publishToMaven: {
-    mavenEndpoint: "https://s01.oss.sonatype.org",
     mavenGroupId: "com.pepperize",
     mavenArtifactId: "cdk-dynamodb-backup",
     javaPackage: "com.pepperize.cdk.dynamodb_backup",

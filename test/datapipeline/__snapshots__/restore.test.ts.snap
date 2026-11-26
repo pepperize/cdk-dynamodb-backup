@@ -1,28 +1,28 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`DataPipelineRestore Should match snapshot 1`] = `
-Object {
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+{
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "Bucket83908E77": Object {
+  "Resources": {
+    "Bucket83908E77": {
       "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "BucketEncryption": Object {
-          "ServerSideEncryptionConfiguration": Array [
-            Object {
-              "ServerSideEncryptionByDefault": Object {
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
                 "SSEAlgorithm": "AES256",
               },
             },
           ],
         },
-        "PublicAccessBlockConfiguration": Object {
+        "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
           "BlockPublicPolicy": true,
           "IgnorePublicAcls": true,
@@ -32,37 +32,37 @@ Object {
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Retain",
     },
-    "BucketPolicyE9A3008A": Object {
-      "Properties": Object {
-        "Bucket": Object {
+    "BucketPolicyE9A3008A": {
+      "Properties": {
+        "Bucket": {
           "Ref": "Bucket83908E77",
         },
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
+        "PolicyDocument": {
+          "Statement": [
+            {
               "Action": "s3:*",
-              "Condition": Object {
-                "Bool": Object {
+              "Condition": {
+                "Bool": {
                   "aws:SecureTransport": "false",
                 },
               },
               "Effect": "Deny",
-              "Principal": Object {
+              "Principal": {
                 "AWS": "*",
               },
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "Bucket83908E77",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "Bucket83908E77",
                           "Arn",
                         ],
@@ -79,102 +79,102 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
-      "DependsOn": Array [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
         "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
       ],
-      "Properties": Object {
-        "Code": Object {
-          "S3Bucket": Object {
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-\${AWS::AccountId}-\${AWS::Region}",
           },
-          "S3Key": "bdb08b9984816ecf43301a0c6d8913e270ee2448940b6b95e430dd222a4d90be.zip",
+          "S3Key": "6dba3da2af96b69a187d689b326e5272b9abc8671c0427845a8bed243e02877d.zip",
         },
-        "Description": Object {
-          "Fn::Join": Array [
+        "Description": {
+          "Fn::Join": [
             "",
-            Array [
+            [
               "Lambda function for auto-deleting objects in ",
-              Object {
+              {
                 "Ref": "RestoreLogBucket92CE6D0A",
               },
               " S3 bucket.",
             ],
           ],
         },
-        "Handler": "__entrypoint__.handler",
+        "Handler": "index.handler",
         "MemorySize": 128,
-        "Role": Object {
-          "Fn::GetAtt": Array [
+        "Role": {
+          "Fn::GetAtt": [
             "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
             "Arn",
           ],
         },
-        "Runtime": "nodejs12.x",
+        "Runtime": "nodejs24.x",
         "Timeout": 900,
       },
       "Type": "AWS::Lambda::Function",
     },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "lambda.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
+        "ManagedPolicyArns": [
+          {
             "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
           },
         ],
       },
       "Type": "AWS::IAM::Role",
     },
-    "RestoreInstanceProfileC664AC77": Object {
-      "Properties": Object {
-        "Roles": Array [
-          Object {
+    "RestoreInstanceProfileC664AC77": {
+      "Properties": {
+        "Roles": [
+          {
             "Ref": "RestoreResourceRole47C46902",
           },
         ],
       },
       "Type": "AWS::IAM::InstanceProfile",
     },
-    "RestoreLogBucket92CE6D0A": Object {
+    "RestoreLogBucket92CE6D0A": {
       "DeletionPolicy": "Delete",
-      "Properties": Object {
-        "BucketEncryption": Object {
-          "ServerSideEncryptionConfiguration": Array [
-            Object {
-              "ServerSideEncryptionByDefault": Object {
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
                 "SSEAlgorithm": "AES256",
               },
             },
           ],
         },
-        "LifecycleConfiguration": Object {
-          "Rules": Array [
-            Object {
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
               "ExpirationInDays": 14,
               "Status": "Enabled",
             },
           ],
         },
-        "PublicAccessBlockConfiguration": Object {
+        "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
           "BlockPublicPolicy": true,
           "IgnorePublicAcls": true,
           "RestrictPublicBuckets": true,
         },
-        "Tags": Array [
-          Object {
+        "Tags": [
+          {
             "Key": "aws-cdk:auto-delete-objects",
             "Value": "true",
           },
@@ -183,17 +183,17 @@ Object {
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Delete",
     },
-    "RestoreLogBucketAutoDeleteObjectsCustomResource5F907F9F": Object {
+    "RestoreLogBucketAutoDeleteObjectsCustomResource5F907F9F": {
       "DeletionPolicy": "Delete",
-      "DependsOn": Array [
+      "DependsOn": [
         "RestoreLogBucketPolicyBEE68A85",
       ],
-      "Properties": Object {
-        "BucketName": Object {
+      "Properties": {
+        "BucketName": {
           "Ref": "RestoreLogBucket92CE6D0A",
         },
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
+        "ServiceToken": {
+          "Fn::GetAtt": [
             "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
             "Arn",
           ],
@@ -202,37 +202,37 @@ Object {
       "Type": "Custom::S3AutoDeleteObjects",
       "UpdateReplacePolicy": "Delete",
     },
-    "RestoreLogBucketPolicyBEE68A85": Object {
-      "Properties": Object {
-        "Bucket": Object {
+    "RestoreLogBucketPolicyBEE68A85": {
+      "Properties": {
+        "Bucket": {
           "Ref": "RestoreLogBucket92CE6D0A",
         },
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
+        "PolicyDocument": {
+          "Statement": [
+            {
               "Action": "s3:*",
-              "Condition": Object {
-                "Bool": Object {
+              "Condition": {
+                "Bool": {
                   "aws:SecureTransport": "false",
                 },
               },
               "Effect": "Deny",
-              "Principal": Object {
+              "Principal": {
                 "AWS": "*",
               },
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
@@ -243,34 +243,35 @@ Object {
                 },
               ],
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
                 "s3:GetBucket*",
                 "s3:List*",
                 "s3:DeleteObject*",
               ],
               "Effect": "Allow",
-              "Principal": Object {
-                "AWS": Object {
-                  "Fn::GetAtt": Array [
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
                     "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
                     "Arn",
                   ],
                 },
               },
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
@@ -287,121 +288,121 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "RestorePipelineF29E167F": Object {
-      "Properties": Object {
+    "RestorePipelineF29E167F": {
+      "Properties": {
         "Activate": true,
-        "Description": Object {
-          "Fn::Join": Array [
+        "Description": {
+          "Fn::Join": [
             "",
-            Array [
+            [
               "Backup DynamoDB Table ",
-              Object {
+              {
                 "Ref": "TableCD117FA1",
               },
               " ",
-              Object {
+              {
                 "Ref": "AWS::AccountId",
               },
               " ",
-              Object {
+              {
                 "Ref": "AWS::Region",
               },
               " to S3",
             ],
           ],
         },
-        "Name": Object {
-          "Fn::Join": Array [
+        "Name": {
+          "Fn::Join": [
             "",
-            Array [
+            [
               "dynamodb-restore-",
-              Object {
+              {
                 "Ref": "TableCD117FA1",
               },
               "-",
-              Object {
+              {
                 "Ref": "AWS::AccountId",
               },
               "-",
-              Object {
+              {
                 "Ref": "AWS::Region",
               },
             ],
           ],
         },
-        "ParameterObjects": Array [
-          Object {
-            "Attributes": Array [
-              Object {
+        "ParameterObjects": [
+          {
+            "Attributes": [
+              {
                 "Key": "default",
-                "StringValue": Object {
+                "StringValue": {
                   "Ref": "AWS::Region",
                 },
               },
-              Object {
+              {
                 "Key": "watermark",
                 "StringValue": "Enter DynamoDB table region",
               },
-              Object {
+              {
                 "Key": "description",
                 "StringValue": "Region of the DynamoDB table",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "string",
               },
             ],
             "Id": "DDBRegion",
           },
-          Object {
-            "Attributes": Array [
-              Object {
+          {
+            "Attributes": [
+              {
                 "Key": "watermark",
                 "StringValue": "Enter DynamoDB table name",
               },
-              Object {
+              {
                 "Key": "description",
                 "StringValue": "Name of the target DynamoDB table",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "string",
               },
             ],
             "Id": "DDBTable",
           },
-          Object {
-            "Attributes": Array [
-              Object {
+          {
+            "Attributes": [
+              {
                 "Key": "default",
                 "StringValue": "0.5",
               },
-              Object {
+              {
                 "Key": "watermark",
                 "StringValue": "Enter value between 0.1 and 1.0",
               },
-              Object {
+              {
                 "Key": "description",
                 "StringValue": "DynamoDB read throughput ratio",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "Double",
               },
             ],
             "Id": "DDBReadThroughputRatio",
           },
-          Object {
-            "Attributes": Array [
-              Object {
+          {
+            "Attributes": [
+              {
                 "Key": "watermark",
                 "StringValue": "Select the output S3 folder",
               },
-              Object {
+              {
                 "Key": "description",
                 "StringValue": "Input S3 folder",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "AWS::S3::ObjectKey",
               },
@@ -409,31 +410,31 @@ Object {
             "Id": "S3InputLocation",
           },
         ],
-        "ParameterValues": Array [
-          Object {
+        "ParameterValues": [
+          {
             "Id": "DDBRegion",
-            "StringValue": Object {
+            "StringValue": {
               "Ref": "AWS::Region",
             },
           },
-          Object {
+          {
             "Id": "DDBTable",
-            "StringValue": Object {
+            "StringValue": {
               "Ref": "TableCD117FA1",
             },
           },
-          Object {
+          {
             "Id": "DDBReadThroughputRatio",
             "StringValue": "0.5",
           },
-          Object {
+          {
             "Id": "S3InputLocation",
-            "StringValue": Object {
-              "Fn::Join": Array [
+            "StringValue": {
+              "Fn::Join": [
                 "",
-                Array [
+                [
                   "s3://",
-                  Object {
+                  {
                     "Ref": "Bucket83908E77",
                   },
                   "/my-ddb-backup",
@@ -442,39 +443,39 @@ Object {
             },
           },
         ],
-        "PipelineObjects": Array [
-          Object {
-            "Fields": Array [
-              Object {
+        "PipelineObjects": [
+          {
+            "Fields": [
+              {
                 "Key": "type",
                 "StringValue": "Default",
               },
-              Object {
+              {
                 "Key": "failureAndRerunMode",
                 "StringValue": "CASCADE",
               },
-              Object {
+              {
                 "Key": "scheduleType",
                 "StringValue": "ONDEMAND",
               },
-              Object {
+              {
                 "Key": "resourceRole",
                 "StringValue": "undefined",
               },
-              Object {
+              {
                 "Key": "role",
-                "StringValue": Object {
+                "StringValue": {
                   "Ref": "RestoreRole434BA328",
                 },
               },
-              Object {
+              {
                 "Key": "pipelineLogUri",
-                "StringValue": Object {
-                  "Fn::Join": Array [
+                "StringValue": {
+                  "Fn::Join": [
                     "",
-                    Array [
+                    [
                       "s3://",
-                      Object {
+                      {
                         "Ref": "RestoreLogBucket92CE6D0A",
                       },
                       "/dynamodb/restore",
@@ -486,33 +487,33 @@ Object {
             "Id": "Default",
             "Name": "Default",
           },
-          Object {
-            "Fields": Array [
-              Object {
+          {
+            "Fields": [
+              {
                 "Key": "coreInstanceCount",
                 "StringValue": "1",
               },
-              Object {
+              {
                 "Key": "coreInstanceType",
                 "StringValue": "m3.xlarge",
               },
-              Object {
+              {
                 "Key": "releaseLabel",
                 "StringValue": "emr-5.23.0",
               },
-              Object {
+              {
                 "Key": "masterInstanceType",
                 "StringValue": "m3.xlarge",
               },
-              Object {
+              {
                 "Key": "region",
                 "StringValue": "#{DDBRegion}",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "EmrCluster",
               },
-              Object {
+              {
                 "Key": "terminateAfter",
                 "StringValue": "1 hours",
               },
@@ -520,33 +521,33 @@ Object {
             "Id": "EmrClusterForRestore",
             "Name": "EmrClusterForRestore",
           },
-          Object {
-            "Fields": Array [
-              Object {
+          {
+            "Fields": [
+              {
                 "Key": "input",
                 "RefValue": "S3RestoreLocation",
               },
-              Object {
+              {
                 "Key": "output",
                 "RefValue": "DDBTargetTable",
               },
-              Object {
+              {
                 "Key": "maximumRetries",
                 "StringValue": "2",
               },
-              Object {
+              {
                 "Key": "step",
                 "StringValue": "s3://dynamodb-dpl-#{DDBRegion/emr-ddb-storage-handler/4.11.0/emr-dynamodb-tools-4.11.0-SNAPSHOT-jar-with-dependencies.jar,org.apache.hadoop.dynamodb.tools.DynamoDBImport,#{input.directoryPath},#{output.tableName},#{output.readThroughputPercent}",
               },
-              Object {
+              {
                 "Key": "runsOn",
                 "RefValue": "EmrClusterForBackup",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "EmrActivity",
               },
-              Object {
+              {
                 "Key": "resizeClusterBeforeRunning",
                 "StringValue": "true",
               },
@@ -554,21 +555,21 @@ Object {
             "Id": "TableRestoreActivity",
             "Name": "TableRestoreActivity",
           },
-          Object {
-            "Fields": Array [
-              Object {
+          {
+            "Fields": [
+              {
                 "Key": "readThroughputPercent",
                 "StringValue": "#{DDBReadThroughputRatio",
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "DynamoDBDataNode",
               },
-              Object {
+              {
                 "Key": "tableName",
                 "StringValue": "#{DDBTable",
               },
-              Object {
+              {
                 "Key": "region",
                 "StringValue": "#{DDBRegion",
               },
@@ -576,16 +577,16 @@ Object {
             "Id": "DDBTargetTable",
             "Name": "DDBTargetTable",
           },
-          Object {
-            "Fields": Array [
-              Object {
+          {
+            "Fields": [
+              {
                 "Key": "directoryPath",
-                "StringValue": Object {
-                  "Fn::Join": Array [
+                "StringValue": {
+                  "Fn::Join": [
                     "",
-                    Array [
+                    [
                       "s3://",
-                      Object {
+                      {
                         "Ref": "Bucket83908E77",
                       },
                       "/my-ddb-backup",
@@ -593,7 +594,7 @@ Object {
                   ],
                 },
               },
-              Object {
+              {
                 "Key": "type",
                 "StringValue": "S3DataNode",
               },
@@ -605,37 +606,27 @@ Object {
       },
       "Type": "AWS::DataPipeline::Pipeline",
     },
-    "RestoreResourceRole47C46902": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "RestoreResourceRole47C46902": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
-                "Service": Object {
-                  "Fn::Join": Array [
-                    "",
-                    Array [
-                      "ec2.",
-                      Object {
-                        "Ref": "AWS::URLSuffix",
-                      },
-                    ],
-                  ],
-                },
+              "Principal": {
+                "Service": "ec2.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/AmazonEC2RoleforDataPipelineRole",
@@ -646,50 +637,48 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "RestoreResourceRoleDefaultPolicy33CDDB9A": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
+    "RestoreResourceRoleDefaultPolicy33CDDB9A": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
                 "dynamodb:BatchWriteItem",
                 "dynamodb:PutItem",
                 "dynamodb:UpdateItem",
                 "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
               ],
               "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "TableCD117FA1",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Ref": "AWS::NoValue",
-                },
               ],
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
                 "s3:GetObject*",
                 "s3:GetBucket*",
                 "s3:List*",
               ],
               "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "Bucket83908E77",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "Bucket83908E77",
                           "Arn",
                         ],
@@ -700,26 +689,30 @@ Object {
                 },
               ],
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
                 "s3:DeleteObject*",
                 "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
                 "s3:Abort*",
               ],
               "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "RestoreLogBucket92CE6D0A",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "RestoreLogBucket92CE6D0A",
                           "Arn",
                         ],
@@ -734,42 +727,42 @@ Object {
           "Version": "2012-10-17",
         },
         "PolicyName": "RestoreResourceRoleDefaultPolicy33CDDB9A",
-        "Roles": Array [
-          Object {
+        "Roles": [
+          {
             "Ref": "RestoreResourceRole47C46902",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "RestoreRole434BA328": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "RestoreRole434BA328": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "elasticmapreduce.amazonaws.com",
               },
             },
-            Object {
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "datapipeline.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/AWSDataPipelineRole",
@@ -780,22 +773,22 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "TableCD117FA1": Object {
+    "TableCD117FA1": {
       "DeletionPolicy": "Retain",
-      "Properties": Object {
-        "AttributeDefinitions": Array [
-          Object {
+      "Properties": {
+        "AttributeDefinitions": [
+          {
             "AttributeName": "id",
             "AttributeType": "S",
           },
         ],
-        "KeySchema": Array [
-          Object {
+        "KeySchema": [
+          {
             "AttributeName": "id",
             "KeyType": "HASH",
           },
         ],
-        "ProvisionedThroughput": Object {
+        "ProvisionedThroughput": {
           "ReadCapacityUnits": 5,
           "WriteCapacityUnits": 5,
         },
@@ -804,22 +797,22 @@ Object {
       "UpdateReplacePolicy": "Retain",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],

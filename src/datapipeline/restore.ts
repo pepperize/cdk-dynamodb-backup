@@ -61,7 +61,7 @@ export class DataPipelineRestore extends Construct implements ITaggable {
     this.role = new iam.Role(this, "Role", {
       assumedBy: new iam.CompositePrincipal(
         new iam.ServicePrincipal("elasticmapreduce.amazonaws.com"),
-        new iam.ServicePrincipal("datapipeline.amazonaws.com")
+        new iam.ServicePrincipal("datapipeline.amazonaws.com"),
       ),
       managedPolicies: [iam.ManagedPolicy.fromAwsManagedPolicyName("AWSDataPipelineRole")],
     });
