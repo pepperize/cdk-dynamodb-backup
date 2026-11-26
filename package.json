@@ -3,7 +3,7 @@
   "description": "Backup and restore AWS DynamoDB Table to AWS S3 Bucket with AWS Data Pipeline.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/patrick.florek/cdk-dynamodb-backup.git"
+    "url": "https://github.com/pepperize/cdk-dynamodb-backup.git"
   },
   "scripts": {
     "build": "projen build",

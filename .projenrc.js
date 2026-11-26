@@ -9,7 +9,7 @@ const project = new AwsCdkConstructLibrary({
   name: "@pepperize/cdk-dynamodb-backup",
   description: "Backup and restore AWS DynamoDB Table to AWS S3 Bucket with AWS Data Pipeline.",
   keywords: ["aws", "cdk", "dynamodb", "table", "s3", "bucket", "data pipeline", "emr", "backup", "restore"],
-  repositoryUrl: "https://github.com/patrick.florek/cdk-dynamodb-backup.git",
+  repositoryUrl: "https://github.com/pepperize/cdk-dynamodb-backup.git",
 
   minNodeVersion: "22.13.0",
   workflowNodeVersion: "24.x",
